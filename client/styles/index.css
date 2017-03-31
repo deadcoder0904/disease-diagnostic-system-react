@@ -1,0 +1,12 @@
+body {
+	background: url(../img/bg.jpeg) no-repeat center center fixed;
+  	background-size: cover;
+}
+
+h1 {
+	color: white;
+	font-size: 5em;
+	text-align: center;
+	font-family: 'Verdana';
+	text-shadow: 5px 8px 3px #333;
+}
