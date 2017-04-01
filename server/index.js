@@ -1,12 +1,24 @@
+/* NPM Libraries*/
 import express from 'express';
-import path from 'path';
+import bodyParser from 'body-parser';
 
+/* Webpack Libraries*/
 import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.config.dev';
 
-let app = express();
+import connectdb from './connectdb';
+
+/* Mongoose Models */
+import users from './model/users';
+
+/* Routes */
+import index from './routes/index';
+import login from './routes/login';
+import signUp from './routes/signUp';
+
+const app = express();
 
 const compiler = webpack(webpackConfig)
 
@@ -17,8 +29,13 @@ app.use(webpackMiddleware(compiler, {
 }));
 app.use(webpackHotMiddleware(compiler));
 
-app.get('/*', (req,res) => {
-	res.sendFile(path.join(__dirname,'./index.html'));
-});
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
-app.listen(3000, () => console.log('running on localhost:3000'));
+app.use('/', index);
+app.use('/login', login);
+app.use('/signUp', signUp);
+
+app.listen(3000, () => {
+	console.log('running on localhost:3000')
+});
