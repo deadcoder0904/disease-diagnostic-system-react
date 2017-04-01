@@ -19,10 +19,9 @@ apiRoutes.post('/',(req,res) => {
 			res.json({msg: "Please provide a long password",ok: false});
 		}
 		else {
-			users.findOne({email},(err,docs) => {
-				console.log(docs);
+			users.findOne({email, password},(err,docs) => {
 				if(docs)
-					res.json({msg: "Alright",ok: true});
+					res.json({msg: "Login Successful !!!",ok: true});
 				else res.json({msg: "No such user exists",ok: false});
 			})
 		}
