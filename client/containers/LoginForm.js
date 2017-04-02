@@ -57,7 +57,7 @@ class LoginForm extends Component {
 						.then(docs => docs.json())
 					    .then(response => {
 					    if(response.success) {
-					    	localStorage.setItem('loggedIn', 'true')
+					    	localStorage.setItem('loggedIn', 'true');
 							this.props.history.push('/disease');
 						}
 						else 
@@ -98,7 +98,6 @@ class LoginForm extends Component {
 				    </div>
 				    <div className="lh-copy mt3">
 				      <Link to="/signUp" className="f6 link dim white db">Sign up</Link>
-				      <Link to="/forgotPassword" className="f6 link dim white db">Forgot your password?</Link>
 				    </div>
 				  </form>
               		<Alert stack={{limit: 1}} />

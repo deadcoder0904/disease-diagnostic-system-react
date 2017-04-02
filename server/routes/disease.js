@@ -27,11 +27,9 @@ apiRoutes.get('/allDiseases',(req,res) => {
 
 apiRoutes.post('/symptoms',(req,res) => {
 	if(req.body.hasOwnProperty('symptoms')) {
-	console.log(req.body['symptoms']);
 		const symptoms = lowercase(req.body['symptoms']);
 		if(symptoms.length)
 			disease.find({symptoms: {$all: symptoms}},(err,docs) => {
-				console.log({docs});
 				if(docs) {
 					if(docs.length)
 						res.json({msg: docs,success: true});

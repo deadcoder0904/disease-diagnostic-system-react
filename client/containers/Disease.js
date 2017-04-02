@@ -19,6 +19,7 @@ class Disease extends Component {
 		this.checkBox = this.checkBox.bind(this)
 		this.disease = this.disease.bind(this)
 		this.checkedBox = this.checkedBox.bind(this)
+		this.logOut = this.logOut.bind(this)
 	}
 	componentDidMount() {
 		if(!localStorage.getItem('loggedIn'))
@@ -102,7 +103,7 @@ class Disease extends Component {
 	}
 	disease(name,symptoms) {
 		return (
-			<div>
+			<div key={Math.random().toString().slice(-6)}>
 				<h1 className="bg-black-70 f1">
 					<div className="red pa2">
 						Name: 
@@ -134,9 +135,24 @@ class Disease extends Component {
 			
 		)
 	};
+	logOut() {
+		localStorage.removeItem('loggedIn');
+			this.props.history.push('/');
+	}
 	render() {
 		return (
 			<div className='white tc'>
+				<header className="sans-serif">
+				  <div className="cover bg-left bg-center-l">
+				    <div className="bg-black-30">
+				      <nav className="dt w-100 mw8 center"> 
+				        <div className="dtc v-mid tr pa3">
+						  <button className="f6 fw4 bg-black-80 no-underline white pointer dn dib-ns pv2 ph3" onClick={this.logOut}>Logout</button> 
+				        </div>
+				      </nav>
+				    </div>
+				  </div>
+				</header>       
 				<h1 className='f1 green i'>Home Page</h1>
   				{
   				!this.state.displayDisease && this.state.symptoms && this.state.symptoms.length != 0 && 
@@ -169,7 +185,7 @@ class Disease extends Component {
 							{this.state.whichDisease.length != 0 && 
 								(
 									<span>
-										<div className="f1 yellow bg-black-50 dib pa3 ba b--blue bw2">You may have the following Diseases : </div>
+										<div className="f1 yellow bg-black-50 dib pa3 ba b--blue bw2">You may have the following Diseases but please consult a doctor : </div>
 										{this.renderDisease()}
 									</span>
 								)
