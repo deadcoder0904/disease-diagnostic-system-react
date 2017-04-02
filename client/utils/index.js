@@ -3,6 +3,8 @@ const validateEmail = (email) =>  {
     return re.test(email);
 };
 
+const lowercase = arr => arr.map(a => a.toLowerCase());
+
 const generateOTP = () => Math.random().toString(10).slice(-4);
 
-export { validateEmail, generateOTP };
+export { validateEmail, generateOTP, lowercase };

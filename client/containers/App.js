@@ -1,32 +1,27 @@
 import React from 'react';
 
 import NotFound from '../components/404';
+import Main from './Main';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
+import Disease from './Disease';
+import AddDisease from './AddDisease';
+import OTP from './OTP';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
-const styles = {
-	h1: {
-		'fontSize': '5em'
-	},
-	flexbox: {
-		'display': 'flex',
-		'justifyContent': 'center',
-		'alignItems': 'center',
-		'height': '50vh'
-	}
-};
 
 class App extends React.Component {
 	render() {
 		return (
-			<div>
-				<h1 style={styles.h1}>Disease Diagnostic System</h1>
-				<div style={styles.flexbox}>
+			<div className="h-75">
+				<div className="flex justify-center align-center">
 					 <Router>
 					      <Switch>
-					      	<Route exact path="/" component={LoginForm} />
+					      	<Route exact path="/" component={Main} />
+					      	<Route path="/login" component={LoginForm}/>
 					      	<Route path="/signUp" component={SignUpForm}/>
+					      	<Route path="/otp/:email" component={OTP}/>
+					      	<Route path="/disease" component={Disease}/>
+					      	<Route path="/addDisease" component={AddDisease}/>
 					      	<Route component={NotFound}/>
 					      </Switch>
 					  </Router>
